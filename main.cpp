@@ -1,18 +1,19 @@
 #include<iostream>
 #include<string.h>
 #include"models/customer.h"
+#include"services/service.transaction.cpp"
 using namespace std;
+extern void getFile();
 void datosPersonales(){
-    cout<<"-----------Creditos--------------------"<<endl;
+    cout<<"------------------Creditos--------------------"<<endl;
     cout<<"Universidad Mariano Gálvez de Guatemala"<<endl;
     cout<<"Ingeniería en Sistemas de información"<<endl;
     cout<<"Nombre: Luis Eduardo Alvarado Celano"<<endl;
     cout<<"Carnet: 0900-20-7376"<<endl;
     cout<<"Curso: Algoritmos"<<endl;
 }
-int menu(){
-    int option;
-    cout<<"-----------Operaciones financieras---------------"<<endl;
+void menu(){
+    cout<<"-----------OPERACIONES FINANCIERAS---------------"<<endl;
     cout<<"elige una opcion ingresado el numero solicitado: "<<endl;
     cout<<"Ingreso de nueva cuenta - (opcion 1)"<<endl;
     cout<<"Ver estado de cuenta y movimientos - (opcion 2)"<<endl;
@@ -20,8 +21,6 @@ int menu(){
     cout<<"Realizar un retiro - (opcion 4)"<<endl;
     cout<<"Salir - (opcion 0)"<<endl;
     cout<<"-------------------------------------------------"<<endl;
-    cin>>option;
-    return option;
 }
 void selectedOption(int option){
     switch (option)
@@ -47,12 +46,19 @@ void selectedOption(int option){
     }
 }
 int main(){
-    customer cliente;
-    // while(menu()>0){
-    //   //  opt=menu();
-    //     cout<<"opcion seleccionada "<<menu()<<endl;
-    //     //selectedOption(menu());
-    // }
-    cout<<"hola mundo";
+    getFile();
+    return 0;
+}
+int main_2(){
+    int option;
+    datosPersonales();
+    menu();
+    cin>>option;
+    selectedOption(option);
+    while(option>0){
+      menu();
+      cin>>option;
+      selectedOption(option);
+    }
     return 0;
 }
