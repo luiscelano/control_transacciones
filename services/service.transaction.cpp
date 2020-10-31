@@ -45,7 +45,7 @@ void updateBalance(int id,bool increment,double value){
     }else cout<<"error el abrir el archivo"<<endl;
 }
 void fetchMovements(int id){
-    cout<<"id encontrado: "<<id<<endl;
+    // cout<<"id encontrado: "<<id<<endl;
     transaction allMovements[N];
     int flag=0;
     transaction customerMovements;
@@ -64,9 +64,9 @@ void fetchMovements(int id){
         flag++;
         }
         file.close();
-        cout<<"total de movimientos: "<<flag<<endl;
+        // cout<<"total de movimientos: "<<flag<<endl;
         for(int x=0;x<flag;x++){
-            cout<<"cuenta no: "<<allMovements[x].accountNumber<<endl;
+            // cout<<"cuenta no: "<<allMovements[x].accountNumber<<endl;
             if(allMovements[x].accountNumber==id){
                 cout<<"["<<allMovements[x].type<<"] - ["<<allMovements[x].accountNumber<<"]"<<endl;
             }
@@ -94,6 +94,7 @@ void fetchAccounts(){
 void fetchAccountById(string id){
     int number = stoi(id);
     account customer;
+    account allAccounts[N];
     bool exists=false;
     int flag=0;
     ifstream file("accounts.dat",ios::in|ios::app);
@@ -102,20 +103,20 @@ void fetchAccountById(string id){
         file.read((char*)&customer.accountNumber,sizeof(customer.accountNumber));
         getline(file,customer.name,'\0');
         file.read((char*)&customer.balance,sizeof(customer.balance));
-        accounts[flag]=customer;
+        allAccounts[flag]=customer;
         flag++;
         }while(!file.eof());
         file.close();
         cout<<"----------------------- total: "<<flag<<endl;
         for(int x=0;x<flag-2;x++){
             // cout<<accounts[x].accountNumber<<endl;
-            if(accounts[x].accountNumber==number){
+            if(allAccounts[x].accountNumber==number){
                 exists=true;
              cout<<"[No. Cuenta] - [Cliente] - [Saldo Actual]"<<endl;
-             cout<<"["<<accounts[x].accountNumber<<"] - ["<<accounts[x].name<<"] - ["<<accounts[x].balance<<"]"<<endl;
+             cout<<"["<<allAccounts[x].accountNumber<<"] - ["<<allAccounts[x].name<<"] - ["<<allAccounts[x].balance<<"]"<<endl;
             cout<<"------Historico de movimientos---------"<<endl;
             cout<<"[No. Cuenta] - [tipo] - [Saldo]"<<endl;
-             fetchMovements(accounts[x].accountNumber);
+             fetchMovements(allAccounts[x].accountNumber);
             //  delay(600);
             }
         }
