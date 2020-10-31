@@ -1,6 +1,7 @@
 #include<iostream>
-#include<string.h>
+#include<string>
 
+using namespace std;
 struct datetime
 {
     int day;
@@ -9,9 +10,9 @@ struct datetime
 };
 struct transaction
 {
-    datetime date;
+    // datetime date;
     int accountNumber;
-    char type[15];
+    string type;
     double balance;
 };
 

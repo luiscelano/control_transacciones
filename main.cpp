@@ -1,9 +1,13 @@
 #include<iostream>
-#include<string.h>
-#include"models/customer.h"
+#include<string>
+#include"models/account.h"
 #include"services/service.transaction.cpp"
+
 using namespace std;
-extern void getFile();
+extern void addAccount();
+extern void fetchAccounts();
+extern void addTransaction(string type,bool increment);
+extern void fetchAccountById(string id);
 void datosPersonales(){
     cout<<"------------------Creditos--------------------"<<endl;
     cout<<"Universidad Mariano Gálvez de Guatemala"<<endl;
@@ -23,19 +27,26 @@ void menu(){
     cout<<"-------------------------------------------------"<<endl;
 }
 void selectedOption(int option){
+    string id;
     switch (option)
     {
     case 1:
-        cout<<"has seleccionado el 1"<<endl;
+        addAccount();
         break;
     case 2:
-        cout<<"has seleccionado el 2"<<endl;
+        cout<<"Ingrese el número de cuenta"<<endl;
+        cin.ignore();
+        getline(cin,id);
+        fetchAccountById(id);
         break;
     case 3:
-        cout<<"has seleccionado el 3"<<endl;
+        addTransaction("deposito",true);
         break;
     case 4:
-        cout<<"has seleccionado el 4"<<endl;
+        addTransaction("retiro",false);
+        break;
+    case 5:
+        fetchAccounts();
         break;
     case 0:
         cout<<"Vuelve pronto!!!"<<endl;
@@ -45,11 +56,14 @@ void selectedOption(int option){
         break;
     }
 }
-int main(){
-    getFile();
+int main_3(){
+    //getFile();
+    //  addTransaction("retiro");
+    // fetchAccounts();
+    fetchAccountById("55");
     return 0;
 }
-int main_2(){
+int main(){
     int option;
     datosPersonales();
     menu();
